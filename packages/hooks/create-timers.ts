@@ -22,26 +22,30 @@ export const createTimeoutFn = (method: () => void, wait: number | Accessor<numb
         }
     }
 
-    function set() {
+    function timeoutSetter(waitTime: number) {
         clear();
-
-        const waitTime = typeof wait === 'function' ? wait() : wait;
 
         timeout = setTimeout(() => {
             ready = true;
             method();
         }, waitTime);
-    }
 
-    function useEffectTimeout() {
-        set();
         onCleanup(clear);
     }
 
+    function set() {
+        const waitTime = typeof wait === 'function' ? wait() : wait;
+        timeoutSetter(waitTime);
+    }
+
     if (typeof wait === 'function') {
-        createEffect(on(wait, useEffectTimeout));
+        createEffect(
+            on(wait, waitTime => {
+                timeoutSetter(waitTime);
+            })
+        );
     } else {
-        onMount(useEffectTimeout);
+        onMount(set);
     }
 
     return [isReady, clear, set] as const;
@@ -53,7 +57,7 @@ export const createTimeoutFn = (method: () => void, wait: number | Accessor<numb
  * @param wait The wait time of `setInterval`
  * @returns An array, the first element is the timer cleaner function, the second one is the timer self
  */
-export const createInterval = (method: () => void, wait = 0) => {
+export const createInterval = (method: () => void, wait: number | Accessor<number>) => {
     /** @description timer self */
     let timer: ReturnType<typeof setTimeout> = 0;
 
@@ -64,10 +68,22 @@ export const createInterval = (method: () => void, wait = 0) => {
         }
     };
 
-    createEffect(() => {
-        timer = setInterval(method, wait);
-    });
-    onCleanup(cleaner);
+    const intervalSetter = (waitTime: number) => {
+        timer = setInterval(method, waitTime);
+        onCleanup(cleaner);
+    };
+
+    if (typeof wait === 'function') {
+        createEffect(
+            on(wait, waitTime => {
+                intervalSetter(waitTime);
+            })
+        );
+    } else {
+        onMount(() => {
+            intervalSetter(wait);
+        });
+    }
 
     return [cleaner, timer] as const;
 };
