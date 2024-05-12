@@ -1,34 +1,40 @@
-import { createImmer } from './create-immer';
+import { createSignal } from 'solid-js';
 
 export function createMap<K, V>(initMap: Map<K, V> | null = null) {
     const initValue = initMap ? initMap : new Map<K, V>();
 
-    const [myMap, updateMyMap] = createImmer(initValue);
+    const [myMap, setMyMap] = createSignal(initValue);
 
     const methods = {
         set(k: K, v: V) {
-            updateMyMap(draft => {
-                draft.set(k, v);
+            setMyMap(oldMap => {
+                const newMap = new Map(oldMap);
+                newMap.set(k, v);
+                return newMap;
             });
         },
         setAll(newMap: Iterable<readonly [K, V]>) {
-            updateMyMap(new Map(newMap));
+            setMyMap(new Map(newMap));
         },
         remove(k: K) {
-            updateMyMap(draft => {
-                draft.delete(k);
+            setMyMap(oldMap => {
+                const newMap = new Map(oldMap);
+                newMap.delete(k);
+                return newMap;
             });
         },
         delete(k: K) {
-            updateMyMap(draft => {
-                draft.delete(k);
+            setMyMap(oldMap => {
+                const newMap = new Map(oldMap);
+                newMap.delete(k);
+                return newMap;
             });
         },
         reset() {
-            updateMyMap(initValue);
+            setMyMap(new Map(initValue));
         },
         clear() {
-            updateMyMap(new Map<K, V>());
+            setMyMap(new Map<K, V>());
         },
         get(k: K) {
             return myMap().get(k);

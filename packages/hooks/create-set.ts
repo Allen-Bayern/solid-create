@@ -1,48 +1,59 @@
-import { createImmer } from './create-immer';
+import { createSignal } from 'solid-js';
 
 export function createSet<T>(initSet: Set<T> | null = null) {
     const initValue = initSet ? initSet : new Set<T>();
 
-    const [aSet, updateASet] = createImmer(initValue);
+    const [setValue, setSetValue] = createSignal(initValue);
 
     const methods = {
         add(v: T) {
-            updateASet(draft => {
-                draft.add(v);
+            setSetValue(oldSet => {
+                const newSet = new Set(oldSet);
+                newSet.add(v);
+                return newSet;
             });
         },
         remove(v: T) {
-            updateASet(draft => {
-                draft.delete(v);
+            setSetValue(oldSet => {
+                const newSet = new Set(oldSet);
+                newSet.delete(v);
+                return newSet;
             });
         },
         delete(v: T) {
-            updateASet(draft => {
-                draft.delete(v);
+            setSetValue(oldSet => {
+                const newSet = new Set(oldSet);
+                newSet.delete(v);
+                return newSet;
             });
         },
         has(v: T) {
-            return aSet().has(v);
+            return setValue().has(v);
         },
         toggle(v: T) {
-            const aSetValue = aSet();
-            if (aSetValue.has(v)) {
-                updateASet(draft => {
-                    draft.delete(v);
+            const val = setValue();
+
+            if (val.has(v)) {
+                setSetValue(oldSet => {
+                    const newSet = new Set(oldSet);
+                    newSet.delete(v);
+                    return newSet;
                 });
             } else {
-                updateASet(draft => {
-                    draft.add(v);
+                setSetValue(oldSet => {
+                    const newSet = new Set(oldSet);
+                    newSet.add(v);
+                    return newSet;
                 });
             }
         },
         reset() {
-            updateASet(initValue);
+            setSetValue(new Set(initValue));
         },
         clear() {
-            updateASet(new Set<T>());
+            setSetValue(new Set<T>());
         },
     };
 
-    return [aSet, methods] as const;
+    return [setValue, methods] as const;
 }
