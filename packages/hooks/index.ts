@@ -1,4 +1,5 @@
 export { createCookieSignal } from './create-cookie';
+export { createClipboardOld } from './create-clipboard-old';
 export { createDebounce } from './create-debounce';
 export { createBool, createToggle } from './create-toggle';
 export { createImmer, type CreateImmerOptions } from './create-immer';
