@@ -18,10 +18,7 @@ export const createThrottleFn = <T extends BasicFn>(
     const run = throttle((...args: Parameters<T>): ReturnType<T> => fn(...args), wait, otherOpts);
 
     const { cancel, flush } = run;
-
-    onCleanup(() => {
-        cancel();
-    });
+    onCleanup(cancel);
 
     return {
         run,
