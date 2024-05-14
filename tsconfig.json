@@ -12,7 +12,7 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "plugins": [{ "name": "typescript-plugin-css-modules" }],
+        "plugins": [],
         "jsx": "preserve",
         "jsxImportSource": "solid-js"
     },
