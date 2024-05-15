@@ -15,3 +15,18 @@ export function createToggle(defaultToggle = false) {
 }
 
 export const createBool = createToggle;
+
+export function create01(initValue: 0 | 1 = 0) {
+    const [v, setV] = createSignal(initValue);
+
+    const toggle = (val: ReturnType<typeof v> | null = null) => {
+        if (val === null) {
+            setV(oldV => Number(!oldV) as 0 | 1);
+            return;
+        }
+
+        setV(val);
+    };
+
+    return [v, toggle] as const;
+}
