@@ -51,7 +51,7 @@ export function createImmer<T = unknown>(
         if (typeof updater === 'function') {
             setState(oldState => produce(oldState, updater as Updater<T>));
         } else {
-            setState(oldState => (updater === oldState ? oldState : updater));
+            setState(oldState => immerFreeze(updater === oldState ? oldState : updater, true));
         }
     };
 
