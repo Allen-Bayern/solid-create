@@ -59,7 +59,7 @@ export const createTimeoutFn = (method: () => void, wait: number | Accessor<numb
  */
 export const createInterval = (method: () => void, wait: number | Accessor<number>) => {
     /** @description timer self */
-    let timer: ReturnType<typeof setTimeout> = 0;
+    let timer: ReturnType<typeof setInterval> = 0;
 
     /** @description clear function */
     const cleaner = () => {

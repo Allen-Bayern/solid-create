@@ -9,6 +9,9 @@ const createBasic = () =>
         .mode('production')
         .resolve.extensions.add('.js')
         .add('.json')
+        .add('.jsx')
+        .add('.ts')
+        .add('.tsx')
         .end()
         .end();
 
