@@ -1,3 +1,1 @@
-# hooks
-
-Hooks
+# `solid-create` hooks list
