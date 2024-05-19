@@ -1,6 +1,6 @@
 import { throttle } from 'lodash-es';
 import { onCleanup } from 'solid-js';
-import type { BasicFn } from 'utils';
+import type { BasicFn } from 'hook-utils';
 
 type CreateThrottleConf = {
     wait: number;
