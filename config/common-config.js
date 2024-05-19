@@ -1,9 +1,9 @@
 const Config = require('webpack-chain');
 
 /** @description to create basic configuration of webpack config */
-const createBasic = () =>
+const createBasic = (libTarget = 'umd') =>
     new Config().output
-        .libraryTarget('umd')
+        .libraryTarget(libTarget)
         .globalObject('this')
         .end()
         .mode('production')

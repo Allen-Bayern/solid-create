@@ -1,10 +1,10 @@
-import { throttle } from 'lodash-es';
+import { throttle, type ThrottleSettings } from 'lodash-es';
 import { onCleanup } from 'solid-js';
-import type { BasicFn } from 'hook-utils';
+import type { BasicFn } from '@solid-util/hook-utils';
 
-type CreateThrottleConf = {
+interface CreateThrottleConf extends ThrottleSettings {
     wait: number;
-} & Parameters<typeof throttle>[2];
+}
 
 export const createThrottleFn = <T extends BasicFn>(
     fn: T,
