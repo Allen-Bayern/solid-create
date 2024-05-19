@@ -1,5 +1,5 @@
 {
-  "name": "@solid-hooks/hooks",
+  "name": "@solid-util/solid-hooks",
   "version": "0.0.1",
   "description": "solid hooks library",
   "main": "./src/index.ts",
