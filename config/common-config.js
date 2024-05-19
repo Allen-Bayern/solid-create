@@ -21,10 +21,10 @@ const createBasic = (libTarget = 'umd') =>
         .end()
         .use('ts-loader')
         .loader('ts-loader')
-        .options({
-            transpileOnly: true,
-            happyPackMode: true,
-        })
+        // .options({
+        //     transpileOnly: true,
+        //     happyPackMode: true,
+        // })
         .end()
         .end()
         .rule('js')
