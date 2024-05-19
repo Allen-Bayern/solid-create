@@ -38,5 +38,9 @@
   },
   "dependencies": {
     "core-js": "^3.37.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allen-Bayern/solid-hooks.git"
+  },
 }
