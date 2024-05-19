@@ -1,6 +1,6 @@
 {
   "name": "@solid-util/solid-hooks",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "solid hooks library",
   "main": "./src/index.ts",
   "scripts": {
@@ -20,7 +20,7 @@
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
     "solid-js": "^1.8.17",
-    "hook-utils": "workspace:^"
+    "@solid-util/hook-utils": "workspace:^"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
