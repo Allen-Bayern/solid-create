@@ -13,5 +13,8 @@
       "email": "tsingcheng1327@live.cn"
     }
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
