@@ -1,6 +1,6 @@
 {
   "name": "@solid-util/solid-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "solid hooks library",
   "main": "./src/index.ts",
   "scripts": {
