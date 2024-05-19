@@ -13,7 +13,7 @@
       "email": "tsingcheng1327@live.cn"
     }
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "clipboard": "^2.0.11",
     "immer": "^10.1.1",
