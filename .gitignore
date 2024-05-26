@@ -132,3 +132,6 @@ dist
 .DS_Store
 
 test.*
+
+es/
+*/es/

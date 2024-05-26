@@ -2,10 +2,10 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist",
+        "outDir": "dist/es",
         "declaration": true,
         "declarationMap": true,
-        "declarationDir": "dist"
+        "declarationDir": "dist/es"
     },
     "include": ["src", "rollup.config.ts"],
     "references": [{ "path": "../hook-utils" }]

@@ -4,7 +4,7 @@
   "description": "solid hooks library",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.ts --configPlugin @rollup/plugin-typescript"
+    "build": "rollup -c rollup.config.ts --configPlugin @rollup/plugin-typescript --bundleConfigAsCjs"
   },
   "keywords": [],
   "contributors": [

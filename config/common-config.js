@@ -1,4 +1,5 @@
 const Config = require('webpack-chain');
+const path = require('path');
 
 /** @description to create basic configuration of webpack config */
 const createBasic = (libTarget = 'umd') =>
@@ -21,10 +22,6 @@ const createBasic = (libTarget = 'umd') =>
         .end()
         .use('ts-loader')
         .loader('ts-loader')
-        // .options({
-        //     transpileOnly: true,
-        //     happyPackMode: true,
-        // })
         .end()
         .end()
         .rule('js')

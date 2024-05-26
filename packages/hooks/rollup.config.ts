@@ -1,12 +1,30 @@
 import { defineConfig } from 'rollup';
+import { resolve as pathResolve } from 'path';
 import typescript from '@rollup/plugin-typescript';
 import { babel } from '@rollup/plugin-babel';
 
 export default defineConfig({
     input: './src/index.ts',
-    output: {
-        file: 'dist/bundle.js',
-        format: 'esm',
-    },
-    plugins: [babel(), typescript()],
+    output: [
+        {
+            format: 'es',
+            exports: 'named',
+            preserveModules: true,
+            preserveModulesRoot: 'src',
+            dir: 'dist/es',
+        },
+        {
+            file: 'dist/index.js',
+            format: 'umd',
+            name: 'solid-hooks',
+        },
+    ],
+    plugins: [
+        babel({
+            babelHelpers: 'bundled',
+            configFile: pathResolve(__dirname, '../../babel.config.cjs'),
+            presets: ['@babel/preset-env'],
+        }),
+        typescript(),
+    ],
 });
