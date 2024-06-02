@@ -4,8 +4,9 @@
   "description": "Utils for hooks",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "webpack"
+    "build": "rollup -c rollup.config.ts --configPlugin @rollup/plugin-typescript --bundleConfigAsCjs"
   },
+  "types": "./dist/types/index.d.ts", 
   "keywords": [],
   "contributors": [
     {
